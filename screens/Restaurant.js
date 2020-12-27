@@ -45,7 +45,76 @@ export default function Restaurant({ route, navigation }) {
     );
   }
 
-  return <SafeAreaView style={styles.container}>{renderHeader()}</SafeAreaView>;
+  function renderFoodInfo() {
+    return (
+      <Animated.ScrollView
+        horizontal
+        pagingEnabled
+        scrollEventThrottle
+        snapToAlignment='center'
+        showsHorizontalScrollIndicator={false}
+
+        // onScroll
+      >
+        {restaurant?.menu.map((item, idx) => (
+          <View key={`menu-${idx}`} style={{ alignItems: 'center' }}>
+            <View style={{ height: SIZES.height * 0.35 }}>
+              {/* Render Food Image */}
+              <Image source={item.photo} resizeMode='cover' style={{ width: SIZES.width, height: '100%' }} />
+
+              {/* Quantity */}
+              <View
+                style={{
+                  position: 'absolute',
+                  bottom: -20,
+                  width: SIZES.width,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                }}
+              >
+                <TouchableOpacity
+                  style={{
+                    width: 50,
+                    backgroundColor: COLORS.white,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderTopLeftRadius: 25,
+                    borderBottomLeftRadius: 25,
+                  }}
+                >
+                  <Text style={{ ...FONTS.body1 }}>-</Text>
+                </TouchableOpacity>
+                <View
+                  style={{ backgroundColor: COLORS.white, width: 50, alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Text style={{ ...FONTS.h1 }}>5</Text>
+                </View>
+                <TouchableOpacity
+                  style={{
+                    width: 50,
+                    backgroundColor: COLORS.white,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderTopRightRadius: 25,
+                    borderBottomRightRadius: 25,
+                  }}
+                >
+                  <Text style={{ ...FONTS.body1 }}>+</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        ))}
+      </Animated.ScrollView>
+    );
+  }
+  return (
+    <SafeAreaView style={styles.container}>
+      {renderHeader()}
+      {renderFoodInfo()}
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

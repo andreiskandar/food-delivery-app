@@ -112,8 +112,7 @@ export default function Home({ navigation }) {
     };
     return (
       <View style={{ padding: SIZES.padding * 2 }}>
-        <Text style={{ ...FONTS.h1 }}>Main</Text>
-        <Text style={{ ...FONTS.h1 }}>Categories</Text>
+        <Text style={{ ...FONTS.h1 }}>Main Categories</Text>
         <FlatList
           data={categories}
           horizontal
