@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, Image, TouchableOpacity, FlatList, Platform } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { COLORS, icons, SIZES, FONTS } from '../constants';
-import { initialCurrentLocation, categoryData, affordable, fairPrice, expensive, restaurantData } from '../mock/data';
+import { initialCurrentLocation, categoryData, restaurantData } from '../mock/data';
 export default function Home() {
   const [categories, setCategories] = useState(categoryData);
   const [selectedCategory, setSelectedCategory] = useState(null);
