@@ -54,6 +54,13 @@ export default function Restaurant({ route, navigation }) {
     return 0;
   }
 
+  function getBasketItemCount() {
+    return orderItems.reduce((total, cur) => total + cur.qty, 0);
+  }
+
+  function sumOrder() {
+    return orderItems.reduce((total, cur) => total + cur.total, 0).toFixed(2);
+  }
   function renderHeader() {
     return (
       <View style={{ flexDirection: 'row', marginBottom: 10 }}>
@@ -241,8 +248,8 @@ export default function Restaurant({ route, navigation }) {
               borderBottomWidth: 1,
             }}
           >
-            <Text style={{ ...FONTS.h3 }}>items in Cart</Text>
-            <Text style={{ ...FONTS.h3 }}>$45</Text>
+            <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} items in Cart</Text>
+            <Text style={{ ...FONTS.h3 }}>$ {sumOrder()}</Text>
           </View>
           <View
             style={{
