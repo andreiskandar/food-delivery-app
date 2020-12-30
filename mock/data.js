@@ -71,7 +71,7 @@ const expensive = 3;
 const restaurantData = [
   {
     id: 1,
-    name: 'Burger',
+    name: " Vera's Burger",
     rating: 4.8,
     categories: [5, 7],
     priceRating: affordable,
@@ -114,7 +114,7 @@ const restaurantData = [
   },
   {
     id: 2,
-    name: 'Pizza',
+    name: 'Pizza Hut',
     rating: 4.8,
     categories: [2, 4, 6],
     priceRating: expensive,
@@ -165,7 +165,7 @@ const restaurantData = [
   },
   {
     id: 3,
-    name: 'Hotdogs',
+    name: 'Japadogs',
     rating: 4.8,
     categories: [3],
     priceRating: expensive,
@@ -192,7 +192,7 @@ const restaurantData = [
   },
   {
     id: 4,
-    name: 'Sushi',
+    name: 'Sushi Garden',
     rating: 4.8,
     categories: [8],
     priceRating: expensive,
@@ -219,7 +219,7 @@ const restaurantData = [
   },
   {
     id: 5,
-    name: 'Cuisine',
+    name: 'Thai Cuisine',
     rating: 4.8,
     categories: [1, 2],
     priceRating: affordable,
@@ -270,7 +270,7 @@ const restaurantData = [
   },
   {
     id: 6,
-    name: 'Dessets',
+    name: 'Tea Lips',
     rating: 4.9,
     categories: [9, 10],
     priceRating: affordable,
