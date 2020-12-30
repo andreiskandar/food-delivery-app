@@ -6,6 +6,7 @@ import { COLORS, icons, SIZES, FONTS } from '../constants';
 export default function Restaurant({ route, navigation }) {
   const [restaurant, setRestaurant] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
+  const [orderItems, setOrderItems] = useState([]);
   const scrollX = new Animated.Value(0);
 
   useEffect(() => {
@@ -13,6 +14,45 @@ export default function Restaurant({ route, navigation }) {
     setRestaurant(item);
     setCurrentLocation(currentLocation);
   });
+
+  function editOrder(action, menuId, price) {
+    let orderList = orderItems.slice();
+    let item = orderList.filter((a) => a.menuId === menuId);
+    if (action == '+') {
+      if (item.length > 0) {
+        let newQty = item[0].qty + 1;
+        item[0].qty = newQty;
+        item[0].total = item[0].qty * price;
+      } else {
+        const newItem = {
+          menuId: menuId,
+          price: price,
+          qty: 1,
+          total: price,
+        };
+        orderList.push(newItem);
+      }
+      setOrderItems(orderList);
+    } else {
+      if (item.length > 0) {
+        if (item[0].qty > 0) {
+          let newQty = item[0].qty - 1;
+          item[0].qty = newQty;
+          item[0].total = item[0].qty * price;
+        }
+      }
+      setOrderItems(orderList);
+    }
+  }
+
+  function getOrderQty(menuId) {
+    let orderItem = orderItems.filter((a) => a.menuId === menuId);
+
+    if (orderItem.length > 0) {
+      return orderItem[0].qty;
+    }
+    return 0;
+  }
 
   function renderHeader() {
     return (
@@ -82,13 +122,20 @@ export default function Restaurant({ route, navigation }) {
                     borderTopLeftRadius: 25,
                     borderBottomLeftRadius: 25,
                   }}
+                  onPress={() => editOrder('-', item.menuId, item.price)}
                 >
                   <Text style={{ ...FONTS.body1 }}>-</Text>
                 </TouchableOpacity>
                 <View
-                  style={{ backgroundColor: COLORS.white, width: 50, alignItems: 'center', justifyContent: 'center' }}
+                  style={{
+                    height: 37,
+                    backgroundColor: COLORS.white,
+                    width: 50,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
                 >
-                  <Text style={{ ...FONTS.h1 }}>5</Text>
+                  <Text style={{ ...FONTS.h2 }}>{getOrderQty(item.menuId)}</Text>
                 </View>
                 <TouchableOpacity
                   style={{
@@ -99,6 +146,7 @@ export default function Restaurant({ route, navigation }) {
                     borderTopRightRadius: 25,
                     borderBottomRightRadius: 25,
                   }}
+                  onPress={() => editOrder('+', item.menuId, item.price)}
                 >
                   <Text style={{ ...FONTS.body1 }}>+</Text>
                 </TouchableOpacity>
