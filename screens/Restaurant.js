@@ -6,6 +6,7 @@ import { COLORS, icons, SIZES, FONTS } from '../constants';
 export default function Restaurant({ route, navigation }) {
   const [restaurant, setRestaurant] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
+  const scrollX = new Animated.Value(0);
 
   useEffect(() => {
     let { item, currentLocation } = route.params;
@@ -15,7 +16,7 @@ export default function Restaurant({ route, navigation }) {
 
   function renderHeader() {
     return (
-      <View style={{ flexDirection: 'row' }}>
+      <View style={{ flexDirection: 'row', marginBottom: 10 }}>
         <TouchableOpacity
           style={{ width: 50, paddingLeft: SIZES.padding * 2, justifyContent: 'center' }}
           onPress={() => navigation.goBack()}
@@ -53,8 +54,7 @@ export default function Restaurant({ route, navigation }) {
         scrollEventThrottle
         snapToAlignment='center'
         showsHorizontalScrollIndicator={false}
-
-        // onScroll
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
       >
         {restaurant?.menu.map((item, idx) => (
           <View key={`menu-${idx}`} style={{ alignItems: 'center' }}>
@@ -129,10 +129,57 @@ export default function Restaurant({ route, navigation }) {
       </Animated.ScrollView>
     );
   }
+
+  function renderDots() {
+    const dotPosition = Animated.divide(scrollX, SIZES.width);
+    return (
+      <View style={{ height: 30 }}>
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', height: SIZES.padding }}>
+          {restaurant?.menu.map((item, index) => {
+            const opacity = dotPosition.interpolate({
+              inputRange: [index - 1, index, index + 1],
+              outputRange: [0.3, 1, 0.3],
+              extrapolate: 'clamp',
+            });
+
+            const dotSize = dotPosition.interpolate({
+              inputRange: [index - 1, index, index + 1],
+              outputRange: [SIZES.base * 0.8, 10, SIZES.base * 0.8],
+              extrapolate: 'clamp',
+            });
+
+            const dotColor = dotPosition.interpolate({
+              inputRange: [index - 1, index, index + 1],
+              outputRange: [COLORS.darkgray, COLORS.primary, COLORS.darkgray],
+              extrapolate: 'clamp',
+            });
+            return (
+              <Animated.View
+                key={`dot-$${index}`}
+                opacity={opacity}
+                style={{
+                  borderRadius: SIZES.radius,
+                  marginHorizontal: 6,
+                  width: dotSize,
+                  height: dotSize,
+                  backgroundColor: dotColor,
+                }}
+              ></Animated.View>
+            );
+          })}
+        </View>
+      </View>
+    );
+  }
+
+  function renderOrder() {
+    return <View>{renderDots()}</View>;
+  }
   return (
     <SafeAreaView style={styles.container}>
       {renderHeader()}
       {renderFoodInfo()}
+      {renderOrder()}
     </SafeAreaView>
   );
 }
