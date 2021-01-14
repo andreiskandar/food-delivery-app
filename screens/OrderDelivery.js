@@ -11,8 +11,6 @@ export default function OrderDelivery({ route, navigation }) {
 
   useEffect(() => {
     const { restaurant, currentLocation } = route.params;
-    console.log('currentLocation:', currentLocation);
-    console.log('restaurant:', restaurant.location);
 
     const fromLoc = currentLocation.gps;
     const toLoc = restaurant.location;
@@ -25,8 +23,6 @@ export default function OrderDelivery({ route, navigation }) {
       longitudeDelta: Math.abs(fromLoc.longitude - toLoc.longitude) * 2,
     };
 
-    console.log('mapRegion:', mapRegion);
-
     setRestaurant(restaurant);
     setStreetName(street);
     setFromLocation(fromLoc);
@@ -35,9 +31,54 @@ export default function OrderDelivery({ route, navigation }) {
   }, []);
 
   function renderMap() {
+    const destinationMarker = () => {
+      return (
+        <Marker coordinate={toLocation}>
+          <View
+            style={{
+              height: 25,
+              width: 25,
+              borderRadius: 20,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: COLORS.white,
+            }}
+          >
+            <View
+              style={{
+                height: 15,
+                width: 15,
+                borderRadius: 15,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: COLORS.primary,
+              }}
+            >
+              <Image source={icons.pin} style={{ width: 10, height: 10, tintColor: COLORS.white }} />
+            </View>
+          </View>
+        </Marker>
+      );
+    };
+
+    const carIcon = () => {
+      return (
+        <Marker
+          coordinate={fromLocation}
+          anchor={{ x: 0.5, y: 0.5 }}
+          flat={true}
+          //rotation
+        >
+          <Image source={icons.car} style={{ height: 30, width: 30 }} />
+        </Marker>
+      );
+    };
     return (
       <View style={{ flex: 1 }}>
-        <MapView style={{ flex: 1 }} provider={PROVIDER_GOOGLE} initialRegion={region}></MapView>
+        <MapView style={{ flex: 1 }} provider={PROVIDER_GOOGLE} initialRegion={region}>
+          {destinationMarker()}
+          {carIcon()}
+        </MapView>
       </View>
     );
   }
