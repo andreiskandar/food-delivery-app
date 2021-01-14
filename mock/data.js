@@ -3,10 +3,10 @@ import { icons, images } from '../constants';
 // Dummy Datas
 
 const initialCurrentLocation = {
-  streetName: 'Vancouver',
+  streetName: 'Burnaby',
   gps: {
-    latitude: 49.2827,
-    longitude: 123.1207,
+    latitude: 43.8623,
+    longitude: -79.21821,
   },
 };
 
@@ -71,15 +71,15 @@ const expensive = 3;
 const restaurantData = [
   {
     id: 1,
-    name: " Vera's Burger",
+    name: "Triple O's Burger",
     rating: 4.8,
     categories: [5, 7],
     priceRating: affordable,
     photo: images.burger_restaurant_1,
     duration: '30 - 45 min',
     location: {
-      latitude: 1.5347282806345879,
-      longitude: 110.35632207358996,
+      latitude: 42.4308,
+      longitude: 59.4636,
     },
     courier: {
       avatar: images.avatar_1,
@@ -121,8 +121,8 @@ const restaurantData = [
     photo: images.pizza_restaurant,
     duration: '15 - 20 min',
     location: {
-      latitude: 1.556306570595712,
-      longitude: 110.35504616746915,
+      latitude: 49.2779,
+      longitude: 122.914,
     },
     courier: {
       avatar: images.avatar_2,

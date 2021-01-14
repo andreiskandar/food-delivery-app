@@ -306,6 +306,7 @@ export default function Restaurant({ route, navigation }) {
                 borderRadius: SIZES.radius,
                 alignItems: 'center',
               }}
+              onPress={() => navigation.navigate('OrderDelivery', { restaurant, currentLocation })}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
             </TouchableOpacity>
