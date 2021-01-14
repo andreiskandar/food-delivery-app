@@ -5,8 +5,8 @@ import { icons, images } from '../constants';
 const initialCurrentLocation = {
   streetName: 'Burnaby',
   gps: {
-    latitude: 43.8623,
-    longitude: -79.21821,
+    latitude: 49.21146,
+    longitude: -122.95236,
   },
 };
 
@@ -78,8 +78,8 @@ const restaurantData = [
     photo: images.burger_restaurant_1,
     duration: '30 - 45 min',
     location: {
-      latitude: 42.4308,
-      longitude: 59.4636,
+      latitude: 49.22051,
+      longitude: -122.97558,
     },
     courier: {
       avatar: images.avatar_1,
@@ -121,8 +121,8 @@ const restaurantData = [
     photo: images.pizza_restaurant,
     duration: '15 - 20 min',
     location: {
-      latitude: 49.2779,
-      longitude: 122.914,
+      latitude: 49.21829,
+      longitude: -122.906,
     },
     courier: {
       avatar: images.avatar_2,

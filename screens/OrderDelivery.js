@@ -12,6 +12,7 @@ export default function OrderDelivery({ route, navigation }) {
   useEffect(() => {
     const { restaurant, currentLocation } = route.params;
     console.log('currentLocation:', currentLocation);
+    console.log('restaurant:', restaurant.location);
 
     const fromLoc = currentLocation.gps;
     const toLoc = restaurant.location;
@@ -23,6 +24,8 @@ export default function OrderDelivery({ route, navigation }) {
       latitudeDelta: Math.abs(fromLoc.latitude - toLoc.latitude) * 2,
       longitudeDelta: Math.abs(fromLoc.longitude - toLoc.longitude) * 2,
     };
+
+    console.log('mapRegion:', mapRegion);
 
     setRestaurant(restaurant);
     setStreetName(street);
