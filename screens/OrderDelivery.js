@@ -99,6 +99,7 @@ export default function OrderDelivery({ route, navigation }) {
               setDuration(result.duration);
 
               if (!isReady) {
+                console.log(mapView);
                 // Fit route into maps
                 mapView.current.fitToCoordinates(result.coordinates, {
                   edgePadding: {
