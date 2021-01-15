@@ -172,8 +172,8 @@ const restaurantData = [
     photo: images.hot_dog_restaurant,
     duration: '20 - 25 min',
     location: {
-      latitude: 1.5238753474714375,
-      longitude: 110.34261833833622,
+      latitude: 49.28027,
+      longitude: -123.11822,
     },
     courier: {
       avatar: images.avatar_3,
@@ -199,8 +199,8 @@ const restaurantData = [
     photo: images.japanese_restaurant,
     duration: '10 - 15 min',
     location: {
-      latitude: 1.5578068150528928,
-      longitude: 110.35482523764315,
+      latitude: 49.2191,
+      longitude: -122.96725,
     },
     courier: {
       avatar: images.avatar_4,

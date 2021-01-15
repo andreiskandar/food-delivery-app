@@ -13,4 +13,4 @@ web-build/
 .DS_Store
 
 # misc
-.env
+env.js

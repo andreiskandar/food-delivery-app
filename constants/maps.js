@@ -1,3 +1,3 @@
-const MAP = 'AIzaSyDoCw0anVbN3pN8sY9o6Tg8NEVP3ogqlh0';
+import { GOOGLE_API_KEY } from '../env';
 
-export default MAP;
+export default GOOGLE_API_KEY;
