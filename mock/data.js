@@ -3,7 +3,7 @@ import { icons, images } from '../constants';
 // Dummy Datas
 
 const initialCurrentLocation = {
-  streetName: 'Burnaby',
+  streetName: '7088 Broadway Ave, Burnaby',
   gps: {
     latitude: 49.21146,
     longitude: -122.95236,
